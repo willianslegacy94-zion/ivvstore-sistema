@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00">
+  <NFe>
+    <infNFe versao="4.00" Id="NFe35260600000000000000550010000000011000000000">
+      <ide>
+        <cUF>35</cUF>
+        <natOp>VENDA MERC. ADQ. RECEB. TERCEIROS</natOp>
+        <mod>55</mod>
+        <serie>1</serie>
+        <nNF>12345</nNF>
+        <dhEmi>2026-06-01T10:00:00-03:00</dhEmi>
+      </ide>
+      <emit>
+        <CNPJ>12345678000199</CNPJ>
+        <xNome>DISTRIBUIDORA DE PERFUMES E ROUPAS LTDA</xNome>
+      </emit>
+      <dest>
+        <CNPJ>99888777000100</CNPJ>
+        <xNome>IVSSTORE GESTAO DE ESTOQUE</xNome>
+      </dest>
+      
+      <det nItem="1">
+        <prod>
+          <cProd>PERF-001</cProd>
+          <cEAN>7891234560002</cEAN>
+          <xProd>La Vie Est Belle Lancome Perfume Feminino 100ml</xProd>
+          <NCM>33030010</NCM>
+          <CFOP>5102</CFOP>
+          <uCom>UN</uCom>
+          <qCom>10.0000</qCom>
+          <vUnCom>250.0000</vUnCom>
+          <vProd>2500.00</vProd>
+          <cEANTrib>7891234560002</cEANTrib>
+          <med>
+            <nLote>LV2026A</nLote>
+            <qLote>10.000</qLote>
+            <dVal>2026-06-25</dVal> </med>
+        </prod>
+      </det>
+
+      <det nItem="2">
+        <prod>
+          <cProd>PERF-002</cProd>
+          <cEAN>7891234560001</cEAN>
+          <xProd>Carolina Herrera Good Girl Eau de Parfum 80ml</xProd>
+          <NCM>33030010</NCM>
+          <CFOP>5102</CFOP>
+          <uCom>UN</uCom>
+          <qCom>3.0000</qCom>
+          <vUnCom>175.0000</vUnCom>
+          <vProd>525.00</vProd>
+          <cEANTrib>7891234560001</cEANTrib>
+          <med>
+            <nLote>CH2026B</nLote>
+            <qLote>3.000</qLote>
+            <dVal>2028-12-31</dVal>
+          </med>
+        </prod>
+      </det>
+
+      <det nItem="3">
+        <prod>
+          <cProd>ROUPA-099</cProd>
+          <cEAN>SEM GTIN</cEAN> <xProd>Conjunto Infantil Kyly Moletom Cachorrinho</xProd>
+          <NCM>61112000</NCM>
+          <CFOP>5102</CFOP>
+          <uCom>UN</uCom>
+          <qCom>20.0000</qCom>
+          <vUnCom>22.5000</vUnCom>
+          <vProd>450.00</vProd>
+          <cEANTrib>SEM GTIN</cEANTrib>
+        </prod>
+      </det>
+
+    </infNFe>
+  </NFe>
+</nfeProc>

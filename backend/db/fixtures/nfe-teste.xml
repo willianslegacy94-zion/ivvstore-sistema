@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00">
+  <NFe>
+    <infNFe Id="NFe35240612345678000195550010000001231234567890" versao="4.00">
+      <ide>
+        <cUF>35</cUF>
+        <nNF>123</nNF>
+        <dhEmi>2026-06-01T10:00:00-03:00</dhEmi>
+      </ide>
+      <emit>
+        <CNPJ>12345678000195</CNPJ>
+        <xNome>Distribuidora de Perfumes Ltda</xNome>
+      </emit>
+
+      <!-- Item 1: produto com EAN e lote de validade (perfumaria) -->
+      <det nItem="1">
+        <prod>
+          <cProd>P001</cProd>
+          <cEAN>7891234560010</cEAN>
+          <xProd>PERFUME LA VIE EST BELLE EDP 100ML</xProd>
+          <NCM>33030020</NCM>
+          <CFOP>5102</CFOP>
+          <uCom>UN</uCom>
+          <qCom>10</qCom>
+          <vUnCom>145.00</vUnCom>
+          <vProd>1450.00</vProd>
+          <rastro>
+            <nLote>LV2026A</nLote>
+            <qLote>10</qLote>
+            <dFab>2026-01</dFab>
+            <dVal>2028-06</dVal>
+          </rastro>
+        </prod>
+      </det>
+
+      <!-- Item 2: produto sem EAN (vestuário sem GTIN registrado) -->
+      <det nItem="2">
+        <prod>
+          <cProd>V001</cProd>
+          <cEAN>SEM GTIN</cEAN>
+          <xProd>CAMISETA BÁSICA ALGODÃO G PRETA</xProd>
+          <NCM>61091000</NCM>
+          <CFOP>5102</CFOP>
+          <uCom>UN</uCom>
+          <qCom>20</qCom>
+          <vUnCom>22.50</vUnCom>
+          <vProd>450.00</vProd>
+        </prod>
+      </det>
+
+      <!-- Item 3: perfume já cadastrado anteriormente (deve ATUALIZAR estoque) -->
+      <det nItem="3">
+        <prod>
+          <cProd>P002</cProd>
+          <cEAN>7891234560001</cEAN>
+          <xProd>PERFUME CAROLINA HERRERA 100ML</xProd>
+          <NCM>33030020</NCM>
+          <CFOP>5102</CFOP>
+          <uCom>UN</uCom>
+          <qCom>3</qCom>
+          <vUnCom>175.00</vUnCom>
+          <vProd>525.00</vProd>
+          <rastro>
+            <nLote>CH2026B</nLote>
+            <qLote>3</qLote>
+            <dFab>2026-02</dFab>
+            <dVal>2028-12</dVal>
+          </rastro>
+        </prod>
+      </det>
+
+    </infNFe>
+  </NFe>
+</nfeProc>
