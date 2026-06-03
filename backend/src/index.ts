@@ -5,16 +5,18 @@ import { pool } from './db/pool';
 import produtosRoutes from './modules/produtos/produtos.routes';
 import dashboardRoutes from './modules/dashboard/dashboard.routes';
 import clientesRoutes from './modules/clientes/clientes.routes';
+import fluxoRoutes from './modules/fluxo-de-caixa/fluxo.routes';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:5180'] }));
 app.use(express.json());
 
 app.use('/produtos', produtosRoutes);
 app.use('/dashboard', dashboardRoutes);
 app.use('/clientes', clientesRoutes);
+app.use('/fluxo-de-caixa', fluxoRoutes);
 
 app.get('/health', async (_req: Request, res: Response) => {
   try {

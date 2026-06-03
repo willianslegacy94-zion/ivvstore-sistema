@@ -31,6 +31,16 @@ const navItems = [
       </svg>
     ),
   },
+  {
+    to: '/fluxo-de-caixa',
+    label: 'Fluxo de Caixa',
+    sublabel: 'Entradas e saídas',
+    icon: (
+      <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+        <path fillRule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM8.798 7.45c.512-.67 1.135-1.2 1.892-1.2.757 0 1.38.53 1.892 1.2.511.67.918 1.555.918 2.55s-.407 1.88-.918 2.55C12.07 13.22 11.447 13.75 10.69 13.75s-1.38-.53-1.892-1.2C8.287 11.88 7.88 10.995 7.88 10s.407-1.88.918-2.55Z" clipRule="evenodd" />
+      </svg>
+    ),
+  },
 ];
 
 export default function Layout() {
