@@ -218,9 +218,9 @@ export default function Estoque() {
         {/* Cabeçalho */}
         <div className="px-6 py-3 bg-gray-50 grid grid-cols-12 gap-4 text-xs font-semibold text-gray-400 uppercase tracking-wider border-b border-gray-100">
           <span className="col-span-4">Descrição</span>
-          <span className="col-span-3">EAN</span>
+          <span className="col-span-2">EAN</span>
           <span className="col-span-2">Marca</span>
-          <span className="col-span-1 text-center">Qtd</span>
+          <span className="col-span-2 text-center">Quantidade</span>
           <span className="col-span-2 text-right">Preço Venda</span>
         </div>
 
@@ -246,14 +246,14 @@ export default function Estoque() {
                 <span className="col-span-4 text-sm text-gray-800 font-medium truncate" title={p.descricao}>
                   {p.descricao}
                 </span>
-                <span className="col-span-3 font-mono text-xs text-gray-400">
+                <span className="col-span-2 font-mono text-xs text-gray-400 truncate">
                   {p.codigo_barras ?? <span className="italic">Sem EAN</span>}
                 </span>
                 <span className="col-span-2 text-sm text-gray-500 truncate">
                   {p.marca ?? '—'}
                 </span>
-                <span className="col-span-1 text-center">
-                  <span className={`inline-block text-xs font-bold px-2 py-0.5 rounded-full ${
+                <span className="col-span-2 text-center">
+                  <span className={`inline-block text-xs font-bold px-2.5 py-1 rounded-full ${
                     p.estoque_qtd === 0
                       ? 'bg-red-100 text-red-600'
                       : p.estoque_qtd <= 3
