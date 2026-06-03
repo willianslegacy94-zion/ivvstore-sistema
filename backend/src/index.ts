@@ -11,7 +11,7 @@ import vendasRoutes from './modules/vendas/vendas.routes';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:5180', 'http://localhost:3001'] }));
+app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:5180'] }));
 app.use(express.json());
 
 app.use('/produtos', produtosRoutes);
