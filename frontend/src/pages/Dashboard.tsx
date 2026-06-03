@@ -1,13 +1,108 @@
+import { useState, useEffect } from 'react';
+import api from '../services/api';
+
+interface Kpi {
+  total_entradas:  number;
+  total_saidas:    number;
+  saldo_caixa:     number;
+  total_a_receber: number;
+}
+
+function formatBRL(v: number) {
+  return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+
+// ── Card KPI ─────────────────────────────────────────────────────
+function KpiCard({
+  label, value, sublabel, icon, variant,
+}: {
+  label: string; value: number; sublabel: string; icon: string;
+  variant: 'green' | 'gold' | 'red' | 'pink';
+}) {
+  const s = {
+    green: { wrap: 'bg-ivs-green-50 border-ivs-green-200', lbl: 'text-ivs-green-600', val: 'text-ivs-green-700', sub: 'text-ivs-green-500' },
+    gold:  {
+      wrap: 'bg-ivs-gold-50 border-ivs-gold-200',
+      lbl: 'text-ivs-gold-600',
+      val: value >= 0 ? 'text-ivs-gold-700' : 'text-red-600',
+      sub: 'text-ivs-gold-500',
+    },
+    red:   { wrap: 'bg-red-50 border-red-200',             lbl: 'text-red-500',        val: 'text-red-600',        sub: 'text-red-400' },
+    pink:  { wrap: 'bg-ivs-pink-100 border-ivs-pink-200',  lbl: 'text-ivs-pink-600',   val: 'text-ivs-pink-600',   sub: 'text-ivs-pink-500' },
+  }[variant];
+
+  return (
+    <div className={`rounded-2xl border px-5 py-4 ${s.wrap}`}>
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-xl">{icon}</span>
+        <p className={`text-xs font-semibold uppercase tracking-wider leading-tight ${s.lbl}`}>{label}</p>
+      </div>
+      <p className={`text-2xl font-bold tabular-nums leading-tight ${s.val}`}>{formatBRL(value)}</p>
+      <p className={`text-[11px] mt-1 ${s.sub}`}>{sublabel}</p>
+    </div>
+  );
+}
+
+// ── Página Dashboard ─────────────────────────────────────────────
 export default function Dashboard() {
+  const [kpi, setKpi]           = useState<Kpi | null>(null);
+  const [loadingKpi, setLoading] = useState(true);
+
+  useEffect(() => {
+    api.get<Kpi>('/dashboard/kpi')
+      .then(r => setKpi(r.data))
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <div>
-      {/* Page header */}
+      {/* ── Header ──────────────────────────────────────────────── */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-ivs-gold-600 tracking-tight">Dashboard</h1>
-        <p className="text-sm text-gray-400 mt-1">Alertas de validade e produtos parados</p>
+        <p className="text-sm text-gray-400 mt-1">Visão geral da IVSSTORE</p>
       </div>
 
-      {/* Alert cards */}
+      {/* ── KPI Cards ───────────────────────────────────────────── */}
+      {loadingKpi ? (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="rounded-2xl border border-gray-100 bg-gray-50 px-5 py-4 h-24 animate-pulse" />
+          ))}
+        </div>
+      ) : kpi && (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <KpiCard
+            label="Faturamento Total"
+            value={kpi.total_entradas}
+            sublabel="Soma de todas as entradas"
+            icon="📈"
+            variant="green"
+          />
+          <KpiCard
+            label="Despesas Totais"
+            value={kpi.total_saidas}
+            sublabel="Saídas lançadas no caixa"
+            icon="📉"
+            variant="red"
+          />
+          <KpiCard
+            label="Saldo em Caixa"
+            value={kpi.saldo_caixa}
+            sublabel="Faturamento menos despesas"
+            icon="💰"
+            variant="gold"
+          />
+          <KpiCard
+            label="A Receber (Caderninho)"
+            value={kpi.total_a_receber}
+            sublabel="Saldo devedor em aberto"
+            icon="📋"
+            variant="pink"
+          />
+        </div>
+      )}
+
+      {/* ── Alertas ─────────────────────────────────────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
         {/* Alertas de Validade */}

@@ -1,6 +1,35 @@
 import { Request, Response } from 'express';
 import { pool } from '../../db/pool';
 
+export async function getKpi(_req: Request, res: Response) {
+  try {
+    const [fluxoRes, caderninhoRes] = await Promise.all([
+      pool.query(`
+        SELECT
+          COALESCE(SUM(valor) FILTER (WHERE tipo = 'entrada'), 0) AS total_entradas,
+          COALESCE(SUM(valor) FILTER (WHERE tipo = 'saida'),   0) AS total_saidas
+        FROM fluxo_de_caixa
+      `),
+      pool.query(`
+        SELECT COALESCE(SUM(saldo_devedor), 0) AS total_a_receber
+        FROM clientes WHERE ativo = TRUE AND saldo_devedor > 0
+      `),
+    ]);
+
+    const totalEntradas = Number(fluxoRes.rows[0].total_entradas);
+    const totalSaidas   = Number(fluxoRes.rows[0].total_saidas);
+
+    res.json({
+      total_entradas:  totalEntradas,
+      total_saidas:    totalSaidas,
+      saldo_caixa:     totalEntradas - totalSaidas,
+      total_a_receber: Number(caderninhoRes.rows[0].total_a_receber),
+    });
+  } catch (err) {
+    res.status(500).json({ error: 'Erro ao buscar KPIs', detail: String(err) });
+  }
+}
+
 export async function getAlertas(_req: Request, res: Response) {
   try {
     const [validade, encalhe] = await Promise.all([

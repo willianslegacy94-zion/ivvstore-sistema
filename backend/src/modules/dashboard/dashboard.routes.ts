@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import { getAlertas } from './dashboard.controller';
+import { getAlertas, getKpi } from './dashboard.controller';
 
 const router = Router();
 
+router.get('/kpi', getKpi);
 router.get('/alertas', getAlertas);
 
 export default router;

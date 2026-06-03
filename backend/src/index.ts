@@ -6,6 +6,7 @@ import produtosRoutes from './modules/produtos/produtos.routes';
 import dashboardRoutes from './modules/dashboard/dashboard.routes';
 import clientesRoutes from './modules/clientes/clientes.routes';
 import fluxoRoutes from './modules/fluxo-de-caixa/fluxo.routes';
+import vendasRoutes from './modules/vendas/vendas.routes';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,6 +18,7 @@ app.use('/produtos', produtosRoutes);
 app.use('/dashboard', dashboardRoutes);
 app.use('/clientes', clientesRoutes);
 app.use('/fluxo-de-caixa', fluxoRoutes);
+app.use('/vendas', vendasRoutes);
 
 app.get('/health', async (_req: Request, res: Response) => {
   try {
